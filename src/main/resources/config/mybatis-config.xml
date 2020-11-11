@@ -15,6 +15,7 @@
     <settings>
         <!--    是否开启驼峰命名自动映射-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--        <setting name="logImpl" value="LOG4J"/>-->
     </settings>
     <!--    可以配置多个环境，但每个 SqlSessionFactory 实例只能选择一种环境。-->
     <environments default="development">
@@ -24,16 +25,16 @@
             </transactionManager>
             <!-- 配置数据源-->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value=""/>
-                <property name="username" value=""/>
-                <property name="password" value=""/>
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
     <!--    映射器mappers：设置对应的数据库操作-->
     <!-- 使用相对于类路径的资源引用 -->
     <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="com/example/login/mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
