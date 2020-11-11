@@ -23,8 +23,8 @@
             // ajax传输表单数据
             data:$('#form').serialize(),
             success: function (result){
-                alert(result.data);
-                if (result.data){
+                alert(result.code);
+                if (result.code==0){
                     window.location.href="index";
                 }else {
                     alert("用户名或密码错误");
