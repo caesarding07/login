@@ -2,6 +2,7 @@ package com.example.login.controller;
 
 import com.example.login.domain.User;
 import com.example.login.service.UserService;
+import com.example.login.utils.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(
+    public JsonData login(
             @RequestParam(value = "username",required = false) String username,
             @RequestParam(value = "password",required = false) String password,
             ModelAndView modelAndView){
@@ -28,9 +29,7 @@ public class UserController {
         user.setUsername(username);
         user.setPassword(password);
         String token=userService.login(user);
-        System.out.println(username);
-        System.out.println(password);
-//        return null;
-        return token != null ? "index":"please check your password";
+        System.out.println(username+":"+password+"==="+token);
+        return token != null ? JsonData.buildSuccess(token):JsonData.buildError("error");
     }
 }

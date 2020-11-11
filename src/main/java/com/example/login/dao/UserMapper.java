@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserMapper {
-    int selectByUsernameAndPassword(User user);
+    User selectByUsernameAndPassword(User user);
 }

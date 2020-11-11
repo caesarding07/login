@@ -3,6 +3,7 @@ package com.example.login.service.impl;
 import com.example.login.dao.UserMapper;
 import com.example.login.domain.User;
 import com.example.login.service.UserService;
+import org.apache.ibatis.session.ResultContext;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -30,10 +31,11 @@ public class UserServiceImpl implements UserService{
     UserMapper userMapper =sqlSession.getMapper(UserMapper.class);
     @Override
     public String login(User user){
-        System.out.println("login();正在尝试查询数据库");
-        int result = userMapper.selectByUsernameAndPassword(user);
+        System.out.println("====正在查询数据库====");
+        User result = userMapper.selectByUsernameAndPassword(user);
+        System.out.println("返回结果:"+result);
 //        int result = 1;
-        if (result == 0){
+        if (result==null){
             return null;
         }else {
             String token = UUID.randomUUID().toString();
